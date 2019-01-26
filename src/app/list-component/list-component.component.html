@@ -1,0 +1,163 @@
+
+
+<!-- Searching -->
+<div class="container">
+<nav class="navbar navbar-expand-sm bg-dark navbar-dark" >
+    <input class="form-control" placeholder="Search..." type="text" name="search" [(ngModel)]="filter" style="width:50%">
+          
+  </nav>
+</div>
+
+
+
+
+
+
+<div class="container">
+<div class="wrapper">
+<h1 style="margin-top:10px">List Of Students</h1>
+</div>
+</div>
+<div class="container">
+
+    <form [formGroup]="form1">
+<table class="table">
+  <thead class="thead-dark">
+  <tr >
+    <!-- <th scope="col"  (click)="sort('id')">ID</th> -->
+    <th scope="col"  (click)="sort('name')">NAME</th>
+    <th scope="col"  (click)="sort('email')">EMAIL</th>
+    <th scope="col"  (click)="sort('contact')">CONTACT</th>
+    <th scope="col"  (click)="sort('city')">CITY</th>
+    <th scope="col"  (click)="sort('date')">DATE</th>
+    <th scope="col">ACTIONS</th>
+    <!-- <th scope="col">UPDATE</th> -->
+  </tr>
+</thead>
+  <tr *ngFor="let std of students | orderBy: key : reverse | filter:filter | paginate: { itemsPerPage: 5, currentPage: p } ; let i = index" [attr.data-index]="i" >
+      
+      <td *ngIf="uSelected[i] !=0">{{std.name}}</td>
+      <td *ngIf="uSelected[i] !=0">{{std.email}}</td>
+      <td *ngIf="uSelected[i] !=0">{{std.contact}}</td>
+      <td *ngIf="uSelected[i] !=0">{{std.city}}</td>
+      <td *ngIf="uSelected[i] !=0">{{std.dob}}</td>
+      
+      
+      <td *ngIf="uSelected[i] ==0"><input  formControlName="uname1" name="name" [(ngModel)]="std.name">
+        <div *ngIf="uname1.touched && uSelected[i] ==0">
+          <div *ngIf="uname1.errors?.required" class="alert alert-danger">Uname is Required</div>
+          <div *ngIf="uname1.errors?.pattern" class="alert alert-danger">Uname is Invalid</div>
+        </div>
+    </td>
+    <td *ngIf="uSelected[i] ==0"><input  formControlName="uemail1" name="email" [(ngModel)]="std.email">
+      <div *ngIf="uemail1.touched && uSelected[i] ==0">
+        <div *ngIf="uemail1.errors?.required" class="alert alert-danger">email is Required</div>
+        <div *ngIf="uemail1.errors?.pattern" class="alert alert-danger">email is Invalid</div>
+      </div>
+    </td>
+    <td *ngIf="uSelected[i] ==0"><input  formControlName="ucontact1" name="contact" [(ngModel)]="std.contact">
+      <div *ngIf="ucontact1.touched && uSelected[i] ==0">
+        <div *ngIf="ucontact1.errors?.required" class="alert alert-danger">contact is Required</div>
+        <div *ngIf="ucontact1.errors?.pattern" class="alert alert-danger">contact is Invalid</div>
+      </div>
+    </td>
+    <td *ngIf="uSelected[i] ==0"><input  formControlName="ucity1" name="city" [(ngModel)]="std.city">
+      <div *ngIf="ucity1.touched && uSelected[i] ==0">
+        <div *ngIf="ucity1.errors?.required" class="alert alert-danger">city is Required</div>
+        <div *ngIf="ucity1.errors?.pattern" class="alert alert-danger">city is Invalid</div>
+      </div>
+    </td>
+    <td *ngIf="uSelected[i] ==0"><input  type="date" class="form-control" formControlName="udob1" name="dob" [(ngModel)]="std.dob">
+      <div *ngIf="udob1.touched && uSelected[i] ==0">
+        <div *ngIf="udob1.errors?.required" class="alert alert-danger">dob is Required</div>
+        <div *ngIf="udob1.errors?.pattern" class="alert alert-danger">dob is Invalid</div>
+      </div>
+    </td>
+
+
+      <td>
+      <button [hidden]="uSelected[i]==0" class="btn" name='Deletei' type='submit' data-toggle="modal" data-target="#myModal" (click)="setIndex(std.key)">
+          <!-- <img src="/assets/image/delete.png" height="20px" width="20px" > -->
+          <i class="fa fa-trash" aria-hidden="true"></i>
+        </button>
+
+      <!-- </td>
+      <td> -->
+
+        <button *ngIf="uSelected[i]==0" class="btn" name='Canceli' type='submit' (click)=cancel(i)>
+          <!-- <img src="/assets/image/delete.png" height="20px" width="20px" > -->
+          <i class="fa fa-times" aria-hidden="true"></i>
+        </button>
+
+        <!-- let dateOfbirth = new Date(this.form.get('emp_email').value).toLocaleDateString('zh-Hans-CN'); -->
+
+        <button class="btn"  [disabled]="!form1.valid && uSelected[i]==0" name='Upadatei' type='submit' (click)="update(std,i)">
+            
+            <i   [ngClass]="{'fa fa-check fa-lg': uSelected[i]==0, 'fa fa-pencil-square-o fa-lg' : uSelected[i]!=0 }"></i>    
+        </button>
+
+        
+
+      </td>
+    </tr>
+
+    
+
+  </table>
+  
+  </form>
+ 
+
+  <!-- <table>
+      
+        <tbody>
+      <tr *ngFor="let std of filteredProducts">
+          <td>{{std.id}}</td>
+          <td>{{std.name  }}</td>
+        </tr>
+      </tbody>
+
+  </table> -->
+
+
+  <div class="wrapper">
+<button name='Deletei' class="btn btn-success"  routerLink='/add' >
+    Add
+    <i class="fa fa-plus-circle" aria-hidden="true"></i>
+  </button>
+</div>
+</div>
+<br>
+<!-- <app-detail [std]="selected" [index]="selectedIndex"></app-detail> -->
+<div class="wrapper">
+<pagination-controls (pageChange)="p = $event"></pagination-controls>
+</div>
+
+
+
+<div class="modal fade" id="myModal">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+    
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title">DELETE</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+      
+      <!-- Modal body -->
+      <div class="modal-body">
+        Are you sure you want to Delete {{selectedName}}?
+      </div>
+      
+      <!-- Modal footer -->
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+      
+      
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="deletei()" >Confirm</button>
+      </div>
+      
+    </div>
+  </div>
+</div>

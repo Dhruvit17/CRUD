@@ -1,0 +1,21 @@
+<div *ngIf="std">
+
+    <h2>{{std.name | uppercase}} Details</h2>
+    <h2>Update Details</h2>
+    
+    <!-- <div><span>id: </span>{{std.id}}</div> -->
+    
+    
+    <div>
+      <label>name:
+        <input [(ngModel)]="std.name" placeholder="name"/>
+      </label>
+    </div>
+  
+  
+  <button name='Update' type='submit' (click)="update(std.name)">
+    Update
+  </button>
+  
+
+  </div>

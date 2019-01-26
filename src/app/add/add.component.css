@@ -1,0 +1,18 @@
+.wrapper {
+    text-align: center;
+  }
+
+  .fCont
+  {
+    text-align: center;
+  }
+
+  .btn.btn-primary
+  {
+    text-align: center;
+    background-color: black;
+    
+  }
+  .navbar.navbar-expand-sm.bg-dark.navbar-dark{
+    min-height: 55px;
+  }

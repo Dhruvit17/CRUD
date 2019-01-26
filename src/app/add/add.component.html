@@ -1,0 +1,176 @@
+
+<div class="container">
+<nav class="navbar navbar-expand-sm bg-dark navbar-dark" >
+  
+  <!-- <input class="form-control" placeholder="Search..." type="text" name="search" [(ngModel)]="filter" style="width:50%"> -->
+
+</nav>
+</div>
+
+<!-- <div>
+    <label>id:
+        <input  [(ngModel)]="addId" placeholder="id"/>
+      </label>
+      <br>
+    <label>name:
+      <input  [(ngModel)]="addName" placeholder="name"/>
+    </label>
+    
+  </div>
+
+<button name='Add' type='submit' routerLink='/list' (click)="add(addId,addName)">
+    Save
+</button> -->
+<!-- <div class="container">
+    <h1>Add Student</h1>
+<div class="row">
+    <div class="col-sm-4"></div>  
+<div class="col-sm-3">
+<div class="input-group ">
+    <div class="input-group-prepend">
+      <span class="input-group-text" id="basic-addon1" >Id:</span>
+    </div>
+    <input type="text" class="form-control" [(ngModel)]="addId" placeholder="Id"  aria-label="Username" aria-describedby="basic-addon1">
+  </div>
+  <div class="input-group ">
+      <div class="input-group-prepend">
+        <span class="input-group-text" id="basic-addon2">Name:</span>
+      </div>
+      <input type="text" class="form-control" [(ngModel)]="addName" placeholder="Username" minlength=3 maxlength=10 aria-label="Username" aria-describedby="basic-addon1">
+    </div>
+    
+    <div class="row">
+      <div class="col-sm-4"></div>
+      <div class="col-sm-3">
+        <button name='Add' type='submit'  routerLink='/list' (click)="add(addId,addName)">
+          Add
+        </button>
+        
+      </div>
+      <div class="col-sm-3"></div>
+      </div>
+
+
+</div>
+<div class="col-sm-3"></div>
+</div>
+
+</div> -->
+<div class="container">
+    <div class="wrapper">
+<h1 style="margin-top:10px">Add Student</h1>
+</div>
+<div class="fCont">
+<form [formGroup]="form">
+    <!-- <div class="form-group">
+      <label for="uid">Id</label>
+      <br>
+      <input 
+        formControlName="uid"
+        id="uid"
+        [(ngModel)]="addId"
+        type="number"
+        style="width:50%"
+      >
+      <div *ngIf="uid.touched && uid.invalid" class="alert alert-danger">Uid is Required or Invalid</div>
+    </div> -->
+    <div class="form-group">
+      <label for="uname">Username</label>
+      <br>
+      <input 
+        formControlName="uname"
+        id="uname"
+        [(ngModel)]="addName"
+        type="text"
+        style="width:50%"
+      >
+      <!-- <div *ngIf="uname.touched && uname.invalid" class="alert alert-danger">Username is Required or Invalid</div> -->
+      <div *ngIf="uname.touched">
+        <div *ngIf="uname.errors?.required" class="alert alert-danger">Uname is Required</div>
+        <div *ngIf="uname.errors?.pattern" class="alert alert-danger">Uname is Invalid</div>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="uname">Email</label>
+      <br>
+      <input 
+        formControlName="uemail"
+        id="uemail"
+        [(ngModel)]="addEmail"
+        type="text"
+        style="width:50%"
+      >
+      <!-- <div *ngIf="uemail.touched && uemail.invalid" class="alert alert-danger">Email is Required or Invalid</div> -->
+      <div *ngIf="uemail.touched ">
+        <div *ngIf="uemail.errors?.required" class="alert alert-danger">email is Required</div>
+        <div *ngIf="uemail.errors?.pattern" class="alert alert-danger">email is Invalid</div>
+      </div>
+      
+      
+      
+    </div>
+    <div class="form-group">
+      <label for="ucontact">Contact</label>
+      <br>
+      <input 
+        formControlName="ucontact"
+        id="ucontact"
+        [(ngModel)]="addContact"
+        type="number"
+        style="width:50%"
+      >
+      <!-- <div *ngIf="ucontact.touched && ucontact.invalid" class="alert alert-danger">Ucontact is Required or Invalid</div> -->
+      <div *ngIf="ucontact.touched">
+        <div *ngIf="ucontact.errors?.required" class="alert alert-danger">contact is Required</div>
+        <div *ngIf="ucontact.errors?.pattern" class="alert alert-danger">contact is Invalid</div>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="ucity">City</label>
+      <br>
+      <input 
+        formControlName="ucity"
+        type="text"
+        id="ucity"
+        [(ngModel)]="addCity"
+        style="width:50%"
+      >
+      <!-- <div *ngIf="ucity.touched && ucity.invalid" class="alert alert-danger">City is Required or Invalid</div> -->
+      <div *ngIf="ucity.touched">
+        <div *ngIf="ucity.errors?.required" class="alert alert-danger">city is Required</div>
+        <div *ngIf="ucity.errors?.pattern" class="alert alert-danger">city is Invalid</div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="udob">DOB</label>
+      <br>
+      <input 
+        formControlName="udob"
+        type="date"
+        
+        id="udob"
+        [(ngModel)]="addDob"
+        style="width:50%"
+      >
+      <!-- <div *ngIf="ucity.touched && ucity.invalid" class="alert alert-danger">City is Required or Invalid</div> -->
+      <!-- <div *ngIf="ucity.touched">
+        <div *ngIf="ucity.errors?.required" class="alert alert-danger">city is Required</div>
+        <div *ngIf="ucity.errors?.pattern" class="alert alert-danger">city is Invalid</div>
+      </div> -->
+    </div>
+    
+  </form>
+</div>
+<div style="width:100% ; text-align:center">
+  <button style=margin-right:10px name='Add'  class="btn btn-danger" type='submit' routerLink='/list'>
+    Cancel
+</button>
+  <button name='Add' [disabled]="!form.valid" class="btn btn-success" type='submit' routerLink='/list' (click)="add(addName,addEmail,addContact,addCity,addDob)">
+      Save
+  </button>
+  
+</div>
+</div>  
+
+  

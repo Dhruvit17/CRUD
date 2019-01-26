@@ -1,0 +1,95 @@
+/* .selected {
+    background-color: #CFD8DC !important;
+    color: white;
+  }
+  .student {
+    margin: 0 0 2em 0;
+    list-style-type: none;
+    padding: 0;
+    width: 50em;
+  }
+  .student li {
+    cursor: pointer;
+    position: relative;
+    left: 0;
+    background-color: #EEE;
+    margin: .5em;
+    padding: .3em 0;
+    height: 1.6em;
+    border-radius: 4px;
+  }
+  .student li.selected:hover {
+    background-color: #BBD8DC !important;
+    color: white;
+  }
+  .student li:hover {
+    color: #607D8B;
+    background-color: #DDD;
+    left: .1em;
+  }
+  .student .text {
+    position: relative;
+    top: -3px;
+  }
+  .student .badge {
+    display: inline-block;
+    font-size: small;
+    color: white;
+    padding: 0.8em 0.7em 0 0.7em;
+    background-color: #607D8B;
+    line-height: 1em;
+    position: relative;
+    left: -1px;
+    top: -4px;
+    height: 1.8em;
+    margin-right: .8em;
+    border-radius: 4px 0 0 4px;
+  }
+  .btn{
+    float:right;
+    display: block;
+  }
+  table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+  }
+  
+  td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+  }
+  
+  tr:nth-child(even) {
+    background-color: #dddddd;
+  }
+   */
+
+   thead>tr>th {
+    cursor: pointer;
+}
+
+.wrapper {
+  text-align: center;
+}
+
+.button {
+  position: absolute;
+  top: 50%;
+}
+.navbar.navbar-expand-sm.bg-dark.navbar-dark{
+  min-height: 50px;
+}
+
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+  table-layout: fixed;
+}
+
+tr>td>input
+{
+  max-width: 150px;
+}
